@@ -10,12 +10,16 @@ import Clases.var;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -27,11 +31,12 @@ public class Ingredientes extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Ingredientes
+     *
      * @param v
      */
     public Ingredientes(var v) {
         initComponents();
-        
+
         this.v = v;
         inicia();
     }
@@ -65,6 +70,9 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -93,13 +101,18 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Descripcion");
 
         jLabel3.setText("Grupo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Porcentage");
+        jLabel4.setText("%");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/FileSaveAs_11185.png"))); // NOI18N
@@ -107,6 +120,11 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Guardar");
@@ -118,6 +136,11 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Borrar");
@@ -129,6 +152,11 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setOpaque(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Editar");
@@ -151,10 +179,26 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setOpaque(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Limpiar");
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel11.setText("Proporcion");
+
+        jTextField2.setEditable(false);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,7 +208,7 @@ public class Ingredientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +216,19 @@ public class Ingredientes extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -190,39 +247,38 @@ public class Ingredientes extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(jTextField2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
@@ -257,11 +313,48 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        editar();
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+        // TODO add your handling code here:
+        cargaPorcentage();
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        guardar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        borrar();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,6 +366,8 @@ public class Ingredientes extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -285,34 +380,31 @@ public class Ingredientes extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
     private void inicia() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //conecta c;
         //c=new conecta();
+        v.setEditando(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable1.getModel();
+        v.setModelo(modelo);
         v.borratabla(modelo);
         cargaCabezaTabla(modelo);
         cargaTabla(modelo);
-        
-        
-        
+        cargaGrupo();
 
-        
-        
-        
     }
 
     private void cargaCabezaTabla(DefaultTableModel modelo) {
         String[] os = {"COD", "DESCRIPCION", "PROPORCION", "GRUPO"};
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+
         modelo.setColumnIdentifiers(os);
-        
+
         // modifica tamaño de las columnas 
-        
         DefaultTableCellRenderer tcr;
         TableColumnModel columnModel = jTable1.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(75);
@@ -326,36 +418,224 @@ public class Ingredientes extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);
 
         jTable1.setModel(modelo);
-        
+
     }
 
     private void cargaTabla(DefaultTableModel modelo) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
-    String sql="Select * from articulos";
-    v.borratabla(modelo);
-    conecta c=new conecta();
-    
-    Object[] fila = new Object[4];
-    
+
+        String sql = "Select * from articulos";
+        v.borratabla(modelo);
+//    conecta c=new conecta();
+
+        Object[] fila = new Object[4];
+
         try {
-            PreparedStatement ps = c.conectar().prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
-            
+            PreparedStatement ps = v.getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
-                fila[0] = rs.getNString("codigo");
-                fila[1] = rs.getNString("descripcion");
-                fila[2] = rs.getNString("proporcion");
-                fila[3] = rs.getNString("grupo");
-                
+                fila[0] = rs.getString("codigo");
+                fila[1] = rs.getString("descripcion");
+                fila[2] = rs.getString("proporcion");
+                fila[3] = rs.getString("grupo");
+//                    System.out.print(rs.getString(1));
+
                 modelo.addRow(fila);
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    
+    private void cargaGrupo() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jComboBox1.removeAllItems();
+        String sql = "select * FROM grupos";
+        try {
+            PreparedStatement ps = v.getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                jComboBox1.addItem(rs.getString(2).trim().toUpperCase());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void editar() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int fila = jTable1.getSelectedRow();
+        v.setEditando(true);
+        v.setCodigoEdicion(String.valueOf(fila));
+        double prop;
+        String desc, grp, COD, pr;
+        TableModel modelo = jTable1.getModel();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA", "Error de Edicion", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        COD = (String) modelo.getValueAt(jTable1.getSelectedRow(), 0);
+        desc = (String) modelo.getValueAt(jTable1.getSelectedRow(), 1);
+        pr = (String) modelo.getValueAt(jTable1.getSelectedRow(), 2);
+        grp = (String) modelo.getValueAt(jTable1.getSelectedRow(), 3);
+
+        jTextField1.setText(desc);
+        jTextField2.setText(pr);
+        jComboBox1.setSelectedItem(grp);
+        v.setCodigoEdicion(COD);
+
+    }
+
+    private void cargaPorcentage() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String seleccion, po;
+        float por;
+        seleccion = (String) jComboBox1.getSelectedItem();
+        String sql = "SELECT participacion FROM grupos WHERE upper(descripcion)=upper('" + seleccion + "')";
+        if (Objects.nonNull(seleccion)) {
+            try {
+                PreparedStatement ps = v.getCon().prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    System.out.print(rs.getString(1));
+                    po = rs.getString(1);
+                    por = Float.valueOf(po);
+                    por = por * 100;
+                    po = String.valueOf(por);
+                    jTextField2.setText(po);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private void guardar() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String desc, prop, grup, cod;
+
+        if (v.getEditando()) {
+
+            desc = jTextField1.getText().toUpperCase();
+            prop = String.valueOf(Float.valueOf(jTextField2.getText()) / 100);
+            grup = jComboBox1.getSelectedItem().toString().toUpperCase();
+            cod = v.getCodigoEdicion();
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos actuales?");
+            String Ssql = "UPDATE articulos SET descripcion=?, proporcion=?, grupo=? "
+                    + "WHERE codigo=?";
+            if (confirmar == JOptionPane.YES_OPTION) {
+
+                try {
+                    PreparedStatement prest = v.getCon().prepareStatement(Ssql);
+                    prest.setString(1, desc);
+                    prest.setString(2, prop);
+                    prest.setString(3, grup);
+                    prest.setString(4, cod);
+
+                    if (prest.executeUpdate() > 0) {
+
+                        JOptionPane.showMessageDialog(null, "Los datos han sido modificados con éxito", "Operación Exitosa",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
+                                + "Inténtelo nuevamente.", "Error en la operación",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            v.setEditando(false);
+        } else {
+            String Ssql = "INSERT INTO articulos (codigo, descripcion, proporcion, grupo) " + "VALUES (?, ?, ?, ?)";
+            desc = jTextField1.getText().toUpperCase();
+            prop = String.valueOf(Float.valueOf(jTextField2.getText()) / 100);
+            grup = jComboBox1.getSelectedItem().toString().toUpperCase();
+            cod = v.getCodigoEdicion();
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos actuales?");
+
+            if (confirmar == JOptionPane.YES_OPTION) {
+
+                try {
+                    PreparedStatement prest = v.getCon().prepareStatement(Ssql);
+                    prest.setString(2, desc);
+                    prest.setString(3, prop);
+                    prest.setString(4, grup);
+                    prest.setString(1, cod);
+
+                    if (prest.executeUpdate() > 0) {
+
+                        JOptionPane.showMessageDialog(null, "Los datos han sido modificados con éxito", "Operación Exitosa",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
+                                + "Inténtelo nuevamente.", "Error en la operación",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+        cargaTabla(v.getModelo());
+    }
+
+    private void borrar() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        
+        int fila = jTable1.getSelectedRow();
+        String COD;
+        TableModel modelo = jTable1.getModel();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        COD = (String) modelo.getValueAt(jTable1.getSelectedRow(), 0);
+
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea borrar los datos actuales?");
+            String Ssql = "DELETE FROM Articulos WHERE codigo = '"+COD+"'";
+        if (confirmar == JOptionPane.YES_OPTION) {
+
+            try {
+                Statement prest = v.getCon().createStatement();
+//                prest.setString(1, COD);
+
+                if (prest.executeUpdate(Ssql) > 0) {
+
+                    JOptionPane.showMessageDialog(null, "Los datos han sido modificados con éxito", "Operación Exitosa",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
+                            + "Inténtelo nuevamente.", "Error en la operación",
+                            JOptionPane.ERROR_MESSAGE);
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ingredientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        cargaTabla(v.getModelo());
+
+    }
+
 }
