@@ -6,6 +6,7 @@
 package Clases;
 
 import java.awt.Image;
+import java.sql.Connection;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +18,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class var {
     //conecta conexion;
-    
+    private Connection con;
+    private Boolean editando;
+    private String codigoEdicion;
+    private DefaultTableModel modelo;
     
     
     
@@ -58,6 +62,38 @@ public class var {
         return icono;
         
         
+    }
+
+    public Connection getCon() {
+        return con;
+    }
+
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+
+    public Boolean getEditando() {
+        return editando;
+    }
+
+    public void setEditando(Boolean editando) {
+        this.editando = editando;
+    }
+
+    public String getCodigoEdicion() {
+        return codigoEdicion;
+    }
+
+    public void setCodigoEdicion(String codigoEdicion) {
+        this.codigoEdicion = codigoEdicion;
+    }
+
+    public DefaultTableModel getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(DefaultTableModel modelo) {
+        this.modelo = modelo;
     }
     
 }
