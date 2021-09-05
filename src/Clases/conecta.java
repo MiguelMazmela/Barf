@@ -30,11 +30,7 @@ public final class conecta {
         
         try {
             Class.forName("org.sqlite.JDBC"); 
-            
             String url = "/home/miguel/Mio/Java/barf/src/db/mi_base.db";
-//            String url = "./src/db/mi_base.db";
-//        Connection connect;
-//            Class.forName("org.sqlite.JDBC ");
             con = DriverManager.getConnection("jdbc:sqlite:"+url);
             System.out.print("conecto");
         } catch (SQLException ex) {
