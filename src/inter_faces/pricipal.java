@@ -5,7 +5,9 @@
  */
 package inter_faces;
 
+import Clases.conecta;
 import Clases.var;
+import java.sql.Connection;
 
 /**
  *
@@ -14,6 +16,7 @@ import Clases.var;
 public class pricipal extends javax.swing.JFrame {
 
     private final var v;
+//    private final Connection con;
 
     /**
      * Creates new form pricipal
@@ -25,6 +28,7 @@ public class pricipal extends javax.swing.JFrame {
 //        jButton1.setIcon(v.SetIcono(urljButton1, jButton1));
 //        jButton1.setPressedIcon(v.SetIconoPrecionado(urljButton1, jButton1, 5, 5));
         this.v = v;
+        v.setCon(new conecta().conectar());
     }
 
     /**
@@ -49,6 +53,8 @@ public class pricipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -133,6 +139,11 @@ public class pricipal extends javax.swing.JFrame {
         jMenu3.setText("Barf");
 
         jMenuItem2.setText("Compras");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Ventas");
@@ -141,6 +152,15 @@ public class pricipal extends javax.swing.JFrame {
 
         jMenuItem4.setText("Fabricacion");
         jMenu3.add(jMenuItem4);
+        jMenu3.add(jSeparator2);
+
+        jMenuItem15.setText("Perros");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem15);
 
         jMenuBar1.add(jMenu3);
 
@@ -239,11 +259,33 @@ public class pricipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
+        Razas rz;
+        rz=new Razas(v);
+        Fondo.add(rz);
+        rz.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        ManejoDB mdb=new ManejoDB();
+        Fondo.add(mdb);
+        mdb.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        Perros pe;
+        pe=new Perros(v);
+        Fondo.add(pe);
+        pe.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +339,7 @@ public class pricipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -307,5 +350,6 @@ public class pricipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
