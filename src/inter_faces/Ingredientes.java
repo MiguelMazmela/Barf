@@ -6,7 +6,7 @@
 package inter_faces;
 
 import Clases.conecta;
-import Clases.var;
+import Clases.variables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,14 +27,14 @@ import javax.swing.table.TableModel;
  */
 public class Ingredientes extends javax.swing.JInternalFrame {
 
-    private final var v;
+    private final variables v;
 
     /**
      * Creates new form Ingredientes
      *
      * @param v
      */
-    public Ingredientes(var v) {
+    public Ingredientes(variables v) {
         initComponents();
 
         this.v = v;

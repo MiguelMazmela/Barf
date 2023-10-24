@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PORTATIL
  */
-public class var {
+public class variables {
     //conecta conexion;
     private Connection con;
     private Boolean editando;

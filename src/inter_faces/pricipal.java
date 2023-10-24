@@ -6,7 +6,7 @@
 package inter_faces;
 
 import Clases.conecta;
-import Clases.var;
+import Clases.variables;
 import java.sql.Connection;
 
 /**
@@ -15,14 +15,14 @@ import java.sql.Connection;
  */
 public class pricipal extends javax.swing.JFrame {
 
-    private final var v;
+    private final variables v;
 //    private final Connection con;
 
     /**
      * Creates new form pricipal
      * @param v
      */
-    public pricipal(var v) {
+    public pricipal(variables v) {
         initComponents();
         String urljButton1="\\iconos\\FileSaveAs_11185g.png";
 //        jButton1.setIcon(v.SetIcono(urljButton1, jButton1));
@@ -61,9 +61,6 @@ public class pricipal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -74,7 +71,6 @@ public class pricipal extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
         jButton1.setPreferredSize(new java.awt.Dimension(72, 72));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,16 +191,12 @@ public class pricipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem8);
 
-        jMenuItem9.setText("Ciudades");
-        jMenu6.add(jMenuItem9);
-
-        jMenuItem10.setText("Distritos");
-        jMenu6.add(jMenuItem10);
-
-        jMenuItem11.setText("Provincias");
-        jMenu6.add(jMenuItem11);
-
-        jMenuItem12.setText("Departamentos");
+        jMenuItem12.setText("Lugares");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem12);
 
         jMenu4.add(jMenu6);
@@ -287,6 +279,14 @@ public class pricipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        Lugares lu = new Lugares(v);
+        Fondo.add(lu);
+        lu.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,8 +334,6 @@ public class pricipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -347,7 +345,6 @@ public class pricipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;

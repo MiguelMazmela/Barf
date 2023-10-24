@@ -5,7 +5,7 @@
  */
 package inter_faces;
 
-import Clases.var;
+import Clases.variables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,13 +22,13 @@ import javax.swing.table.TableColumnModel;
  */
 public class Razas extends javax.swing.JInternalFrame {
 
-    private final var v;
+    private final variables v;
 
     /**
      * Creates new form Razas
      * @param v
      */
-    public Razas(var v) {
+    public Razas(variables v) {
         initComponents();
         this.v = v;
         inicia();

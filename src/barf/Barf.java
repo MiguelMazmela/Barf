@@ -5,7 +5,7 @@
  */
 package barf;
 
-import Clases.var;
+import Clases.variables;
 import inter_faces.pricipal;
 import javax.swing.JFrame;
 
@@ -20,8 +20,8 @@ public class Barf {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        var v;
-        v=new var();
+        variables v;
+        v=new variables();
         pricipal vn;
         vn=new pricipal(v);
         vn.setExtendedState(JFrame.MAXIMIZED_BOTH); 
