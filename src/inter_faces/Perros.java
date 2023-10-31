@@ -133,8 +133,18 @@ public class Perros extends javax.swing.JInternalFrame {
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Grabar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Borrar");
 
@@ -297,6 +307,15 @@ public class Perros extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -337,12 +356,15 @@ public class Perros extends javax.swing.JInternalFrame {
         v.setEditando(false);
         v.setModelo((DefaultTableModel) jTable1.getModel());
         v.borratabla(v.getModelo());
-        
+
 //        jTextField3.SETA
         cargaCabezaTabla(v.getModelo());
         cargaTabla(v.getModelo());
         carga_razas();
         carga_departametos();
+        carga_provincias();
+        carga_distritos();
+        carga_ciudades();
         cargaGrupo();
 
     }
@@ -416,8 +438,7 @@ public class Perros extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
-        
-        
+
     }
 
     private void carga_razas() {
@@ -436,7 +457,7 @@ public class Perros extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     private void carga_departametos() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         jComboBox2.removeAllItems();
@@ -445,7 +466,58 @@ public class Perros extends javax.swing.JInternalFrame {
             PreparedStatement ps = v.getCon().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                jComboBox2.addItem(rs.getString("departamento"));
+                jComboBox2.addItem(rs.getString("Departameto"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Perros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void carga_provincias() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jComboBox3.removeAllItems();
+        String sql = "Select * from provincias";
+        try {
+            PreparedStatement ps = v.getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                jComboBox3.addItem(rs.getString("nombre"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Perros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void carga_distritos() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jComboBox4.removeAllItems();
+        String sql = "Select * from distrito";
+        try {
+            PreparedStatement ps = v.getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                jComboBox4.addItem(rs.getString("nombre"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Perros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void carga_ciudades() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jComboBox5.removeAllItems();
+        String sql = "Select * from CIUDAD";
+        try {
+            PreparedStatement ps = v.getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                jComboBox5.addItem(rs.getString("CIUDAD"));
             }
 
         } catch (SQLException ex) {
